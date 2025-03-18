@@ -20,7 +20,7 @@ options.add_argument("--disable-blink-features=AutomationControlled")
 driver = webdriver.Chrome(service=service, options=options)
 
 # Open Google Search URL
-search_url = "https://www.google.com/search?q=lead+generation+tools&oq=lead+generation+tools"
+search_url = "https://www.google.com/search?q=sigma+haarschampoo&oq=sigma+haarschampoo&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIJCAEQIRgKGKABMgkIAhAhGAoYoAEyCQgDECEYChigATIJCAQQIRgKGKAB0gEIMzMyMmowajeoAgCwAgA&sourceid=chrome&ie=UTF-8"
 
 driver.get(search_url)
 
