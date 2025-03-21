@@ -4,6 +4,14 @@ from selenium.webdriver.common.by import By
 import time
 from bs4 import BeautifulSoup
 import pandas as pd
+import tkinter as tk
+from tkinter import filedialog
+
+
+
+print("Was möchtest du suchen?")
+userSearch = input()
+googleSearch = userSearch.replace(" ", "+")
 
 
 # Set path to ChromeDriver (Replace this with the correct path)
@@ -20,7 +28,7 @@ options.add_argument("--disable-blink-features=AutomationControlled")
 driver = webdriver.Chrome(service=service, options=options)
 
 # Open Google Search URL
-search_url = "https://www.google.com/search?q=lead+generation+tools&oq=lead+generation+tools"
+search_url = "https://www.google.com/search?q="+ googleSearch + "&oq=" + googleSearch
 
 driver.get(search_url)
 
@@ -52,8 +60,26 @@ for i in range(0,len(allData)):
 
     l.append(obj)
     obj={}
+userSearch = userSearch.replace(" ", "_")
+userSearch = userSearch.replace('"', "")
+driver.quit()
+
+root = tk.Tk()
+root.withdraw() 
+
+userPath = ""
+
+while userPath == "":  
+    print("Wähle einen Speicherort für die CSV-Datei")
+    ordnerpfad = filedialog.askdirectory(title="Wähle einen Speicherort")
+
+    if ordnerpfad:  
+        userPath = ordnerpfad 
+    else:
+        print("Kein Ordner ausgewählt. Bitte erneut versuchen.")
+
 
 df = pd.DataFrame(l)
-df.to_csv('google.csv', index=False, encoding='utf-8')
+df.to_csv(userPath, index=False, encoding='utf-8')
 
 print(l)
